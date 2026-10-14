@@ -98,7 +98,12 @@ export interface Translations {
     eyebrow: string;
     title: string;
     lead: string;
-    cta: string;
+    placeholder: string;
+    button: string;
+    submitting: string;
+    success: string;
+    errorInvalid: string;
+    errorGeneric: string;
     disclaimer: string;
   };
   project: {
@@ -138,8 +143,10 @@ export interface Translations {
       initials: string;
       name: string;
       role: string;
+      linkedin?: string;
     }>;
     partnerTitle: string;
+    partnerUrl: string;
   };
   contact: {
     eyebrow: string;
@@ -337,8 +344,13 @@ export const translations: Record<Lang, Translations> = {
       eyebrow: "Lista d'attesa",
       title: "Vuoi sapere quando sarà pronta?",
       lead: "Lasciaci la tua email: ti scriviamo solo per i passi importanti, dal primo prototipo agli studi clinici.",
-      cta: "Iscriviti alla lista d'attesa",
-      disclaimer: "Si apre un modulo esterno. Puoi cancellarti in qualsiasi momento.",
+      placeholder: "La tua email",
+      button: "Iscriviti",
+      submitting: "Invio in corso...",
+      success: "Grazie! La tua email è stata registrata con successo.",
+      errorInvalid: "Inserisci un indirizzo email valido.",
+      errorGeneric: "Si è verificato un errore. Riprova più tardi.",
+      disclaimer: "Nessun invio frequente o spam. Puoi cancellarti in qualsiasi momento.",
     },
     project: {
       eyebrow: "Per partner e investitori",
@@ -400,19 +412,23 @@ export const translations: Record<Lang, Translations> = {
           initials: "NV",
           name: "Niccolò Vono",
           role: "Dottorando in Biotecnologie per la Medicina Molecolare · multi-omica del cancro colorettale",
+          linkedin: "https://www.linkedin.com/in/niccolovono",
         },
         {
           initials: "CV",
           name: "Cristina Vocca",
           role: "Dottoranda in Sanità pubblica · specializzanda in Farmacologia e Tossicologia Clinica",
+          linkedin: "https://www.linkedin.com/in/cristina-vocca",
         },
         {
           initials: "GF",
           name: "Giuseppina Fruci",
           role: "Studentessa di Farmacia",
+          linkedin: "https://www.linkedin.com/in/giuseppina-fruci",
         },
       ],
       partnerTitle: "Partner tecnico e tecnologico",
+      partnerUrl: "https://www.biotecnomed.it",
     },
     contact: {
       eyebrow: "Costruiamolo insieme",
@@ -614,8 +630,13 @@ export const translations: Record<Lang, Translations> = {
       eyebrow: "Waitlist",
       title: "Want to know when it is ready?",
       lead: "Leave us your email: we will only write for the big steps, from the first prototype to clinical studies.",
-      cta: "Join the waitlist",
-      disclaimer: "Opens an external form. You can unsubscribe at any time.",
+      placeholder: "Your email address",
+      button: "Join",
+      submitting: "Submitting...",
+      success: "Thank you! You're now on the waitlist.",
+      errorInvalid: "Please enter a valid email address.",
+      errorGeneric: "An error occurred. Please try again later.",
+      disclaimer: "No spam, ever. You can unsubscribe at any time.",
     },
     project: {
       eyebrow: "For partners and investors",
@@ -677,19 +698,23 @@ export const translations: Record<Lang, Translations> = {
           initials: "NV",
           name: "Niccolò Vono",
           role: "PhD student in Biotechnology for Molecular Medicine · colorectal cancer multi-omics",
+          linkedin: "https://www.linkedin.com/in/niccolovono",
         },
         {
           initials: "CV",
           name: "Cristina Vocca",
           role: "PhD student in Public Health · resident in Clinical Pharmacology and Toxicology",
+          linkedin: "https://www.linkedin.com/in/cristina-vocca",
         },
         {
           initials: "GF",
           name: "Giuseppina Fruci",
           role: "Pharmacy student",
+          linkedin: "https://www.linkedin.com/in/giuseppina-fruci",
         },
       ],
       partnerTitle: "Technical and technology partner",
+      partnerUrl: "https://www.biotecnomed.it",
     },
     contact: {
       eyebrow: "Let's build it together",

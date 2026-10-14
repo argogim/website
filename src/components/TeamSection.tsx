@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
+import { Linkedin, ExternalLink } from "lucide-react";
 
 export const TeamSection: React.FC = () => {
   const { t } = useLanguage();
@@ -22,14 +23,34 @@ export const TeamSection: React.FC = () => {
                 {person.initials}
               </div>
               <div>
-                <h3>{person.name}</h3>
+                <div className="person-header">
+                  <h3>{person.name}</h3>
+                  {person.linkedin && (
+                    <a
+                      href={person.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="linkedin-link"
+                      aria-label={`Profilo LinkedIn di ${person.name}`}
+                      title={`LinkedIn: ${person.name}`}
+                    >
+                      <Linkedin size={15} />
+                    </a>
+                  )}
+                </div>
                 <p>{person.role}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="partner">
+        <a
+          href={t.team.partnerUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="partner"
+          title="Biotecnomed - Polo di Innovazione Tecnologie della Salute"
+        >
           <Image
             src="/assets/biotecnomed.webp"
             alt="Biotecnomed, Polo di Innovazione Tecnologie della Salute"
@@ -37,8 +58,11 @@ export const TeamSection: React.FC = () => {
             height={52}
             style={{ width: "auto", height: 52 }}
           />
-          <span>{t.team.partnerTitle}</span>
-        </div>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+            {t.team.partnerTitle}
+            <ExternalLink size={13} style={{ opacity: 0.6 }} />
+          </span>
+        </a>
       </div>
     </section>
   );
