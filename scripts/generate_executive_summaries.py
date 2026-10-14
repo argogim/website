@@ -414,7 +414,7 @@ HTML_IT = f"""<!DOCTYPE html>
     <div class="header">
       <div class="logo-area">
         <h1>ARGO<span>-GIM</span></h1>
-        <p>Inside Insight · Gastrointestinal Intelligence</p>
+        <p>Autonomous Real-time Gradient Overlay · Gastro Intestinal Monitor</p>
       </div>
       <div class="meta">
         <div>EXECUTIVE SUMMARY · 1/2</div>
@@ -453,7 +453,7 @@ HTML_IT = f"""<!DOCTYPE html>
       <div class="card">
         <div class="card-title">La Soluzione ARGO-GIM</div>
         <h3>Architettura di sistema a 4 componenti integrati</h3>
-        <p>ARGO-GIM è studiato per trasformare una procedura ospedaliera traumatica in un esame domiciliare continuativo e non invasivo:</p>
+        <p><strong>ARGO-GIM (Autonomous Real-time Gradient Overlay - Gastro Intestinal Monitor)</strong> è studiato per trasformare una procedura ospedaliera traumatica in un esame domiciliare continuativo e non invasivo:</p>
         <ul style="padding-left:14px; margin-top:6px; display:grid; gap:3px;">
           <li><strong>Capsula miniaturizzata (28 × 12 mm):</strong> dual-end cameras, array biosensori, radio a bassissimo consumo e batteria allo stato solido biocompatibile.</li>
           <li><strong>Gilet sensori leggero:</strong> indossato sotto gli abiti, rileva la telemetria e stima la localizzazione anatomica della capsula lungo il colon.</li>
@@ -675,7 +675,7 @@ HTML_EN = f"""<!DOCTYPE html>
     <div class="header">
       <div class="logo-area">
         <h1>ARGO<span>-GIM</span></h1>
-        <p>Inside Insight · Gastrointestinal Intelligence</p>
+        <p>Autonomous Real-time Gradient Overlay · Gastro Intestinal Monitor</p>
       </div>
       <div class="meta">
         <div>EXECUTIVE SUMMARY · 1/2</div>
@@ -714,7 +714,7 @@ HTML_EN = f"""<!DOCTYPE html>
       <div class="card">
         <div class="card-title">The ARGO-GIM Solution</div>
         <h3>Integrated 4-component system architecture</h3>
-        <p>ARGO-GIM is designed to transform an invasive hospital procedure into a non-invasive, home-based examination:</p>
+        <p><strong>ARGO-GIM (Autonomous Real-time Gradient Overlay - Gastro Intestinal Monitor)</strong> is designed to transform an invasive hospital procedure into a non-invasive, home-based examination:</p>
         <ul style="padding-left:14px; margin-top:6px; display:grid; gap:3px;">
           <li><strong>Miniaturized capsule (28 × 12 mm):</strong> dual-end cameras, biosensor array, ultra-low-power radio, and solid-state biocompatible battery.</li>
           <li><strong>Lightweight sensor vest:</strong> worn comfortably under daily clothes to track telemetry packets and anatomically localize the capsule.</li>

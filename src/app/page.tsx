@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Statement } from "@/components/Statement";
+import { AcronymSection } from "@/components/AcronymSection";
 import { CapsuleExplorer } from "@/components/CapsuleExplorer";
 import { CapsuleFilm } from "@/components/CapsuleFilm";
 import { Comparison } from "@/components/Comparison";
@@ -24,6 +25,7 @@ export default function Home() {
       <main id="top">
         <Hero />
         <Statement />
+        <AcronymSection />
         <CapsuleExplorer />
         <CapsuleFilm />
         <Comparison />

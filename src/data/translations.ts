@@ -24,6 +24,20 @@ export interface Translations {
     headingBold: string;
     lead: string;
   };
+  acronym: {
+    eyebrow: string;
+    title: string;
+    fullName: string;
+    lead: string;
+    items: Array<{
+      letter: string;
+      word: string;
+      meaning: string;
+      tag: string;
+      desc: string;
+      deepDive: string;
+    }>;
+  };
   explorer: {
     eyebrow: string;
     title: string;
@@ -43,15 +57,33 @@ export interface Translations {
     eyebrow: string;
     title: string;
     lead: string;
+    badgePillcam: string;
+    badgeArgo: string;
+    viewCardsLabel: string;
+    viewTableLabel: string;
+    filterAll: string;
+    filterComfort: string;
+    filterSensors: string;
+    filterAi: string;
+    stats: {
+      invasiveness: { label: string; trad: string; argo: string };
+      modalities: { label: string; trad: string; argo: string };
+      frameAnalysis: { label: string; trad: string; argo: string };
+    };
     headers: {
       feature: string;
       traditional: string;
       argo: string;
     };
     rows: Array<{
+      id: string;
+      category: 'comfort' | 'sensors' | 'ai' | 'routine';
       feature: string;
       traditional: string;
+      traditionalBadge: string;
       argo: string;
+      argoBadge: string;
+      deepDive: string;
       highlight?: boolean;
     }>;
   };
@@ -227,6 +259,46 @@ export const translations: Record<Lang, Translations> = {
       headingBold: "L'obiettivo è permetterti di farlo a casa, senza code e senza timori.",
       lead: "Oggi si deve spesso scegliere tra esami poco informativi e procedure ospedaliere invasive. Il concept ARGO-GIM è studiato per superare questo compromesso, aprendo la strada a una prevenzione accessibile e precoce.",
     },
+    acronym: {
+      eyebrow: "Architettura del Nome",
+      title: "Cosa significa l'acronimo ARGO-GIM",
+      fullName: "Autonomous Real-time Gradient Overlay — Gastro Intestinal Monitor",
+      lead: "Ogni termine dell'acronimo sintetizza una precisa scelta scientifica e ingegneristica volta a superare i limiti storici dell'endoscopia capsulare e ospedaliera.",
+      items: [
+        {
+          letter: "A",
+          word: "Autonomous",
+          meaning: "Navigazione e decisione locale",
+          tag: "Motilità fisiologica & Edge-AI",
+          desc: "La capsula avanza lungo il tratto digerente sfruttando la naturale motilità peristaltica, senza propulsioni robotiche invasive né cateteri.",
+          deepDive: "L'Edge-AI a bordo prende decisioni computazionali autonome in locale: valuta istante per istante i parametri biochimici ed ottici, scartando la ridondanza e massimizzando l'autonomia energetica della batteria.",
+        },
+        {
+          letter: "R",
+          word: "Real-time",
+          meaning: "Telemetria e trasmissione continua",
+          tag: "Zero latenze & Low-Power RF",
+          desc: "Campionamento istantaneo e trasmissione wireless a bassissimo consumo energetico dei pacchetti fisiologici verso il gilet ricevitore indossato.",
+          deepDive: "Nessun ritardo diagnostico né necessità di estrarre fisicamente memorie di massa a fine esame: i dati di telemetria e gli eventi critici vengono registrati e correlati dinamicamente durante la vita quotidiana.",
+        },
+        {
+          letter: "G / O",
+          word: "Gradient Overlay",
+          meaning: "Mappatura biochimica multidimensionale",
+          tag: "Oltre la fotografia superficiale",
+          desc: "Sovrapposizione dinamica dei gradienti chimico-fisici (acidità/pH, stress ossidativo ROS, micro-tracce di emoglobina e temperatura) alle immagini visive.",
+          deepDive: "Le capsule tradizionali si limitano a foto superficiali cieche alla biochimica. ARGO-GIM crea un vero 'overlay' a strati che correla l'immagine alla variazione biochimica continua, rivelando micro-focolai infiammatori e displasie prima che diventino polipi visibili.",
+        },
+        {
+          letter: "GIM",
+          word: "Gastro Intestinal Monitor",
+          meaning: "Monitoraggio continuo domiciliare",
+          tag: "Screening preventivo accessibile",
+          desc: "La missione clinica: trasformare lo screening del colon-retto e il follow-up delle patologie intestinali da procedura temuta a controllo domiciliare periodico.",
+          deepDive: "Un ecosistema integrato (capsula, gilet indossabile, app e referto strutturato per il medico) pensato per abbattere le barriere psicologiche e cliniche che oggi escludono oltre il 64% dei cittadini dagli screening salvavita.",
+        },
+      ],
+    },
     explorer: {
       eyebrow: "Architettura del concept",
       title: "Non solo vedere. Capire a fondo.",
@@ -270,42 +342,81 @@ export const translations: Record<Lang, Translations> = {
       ],
     },
     comparison: {
-      eyebrow: "Perché ARGO-GIM",
-      title: "Cosa fa in più rispetto alle capsule attuali.",
-      lead: "Le capsule endoscopiche tradizionali (come PillCam™) sono una pietra miliare della gastroenterologia, ma presentano limiti importanti. Ecco come ARGO-GIM è pensato per evolvere il settore.",
+      eyebrow: "Confronto Tecnologico",
+      title: "Cosa fa in più rispetto a PillCam™ e alle capsule tradizionali.",
+      lead: "Le capsule endoscopiche commerciali (come PillCam™) hanno aperto la strada all'endoscopia non robotica, ma presentano limiti procedurali e sensoriali stringenti. Ecco come il concept ARGO-GIM è pensato per superarle.",
+      badgePillcam: "Capsule tradizionali (es. PillCam™)",
+      badgeArgo: "Concept ARGO-GIM",
+      viewCardsLabel: "Schede a Confronto",
+      viewTableLabel: "Matrice Tecnica",
+      filterAll: "Tutti i parametri",
+      filterComfort: "Comfort Paziente",
+      filterSensors: "Sensori & Diagnostica",
+      filterAi: "Intelligenza Artificiale",
+      stats: {
+        invasiveness: { label: "Invasività preparazione", trad: "Lassativi intensivi e digiuno", argo: "Zero lassativi o preparazione" },
+        modalities: { label: "Canali di rilevamento", trad: "1 (Solo video ottico)", argo: "5 (Video + pH + ROS + Hb + °C)" },
+        frameAnalysis: { label: "Elaborazione immagini", trad: "Fino a 50.000 frame grezzi", argo: "Edge-AI locale a bordo" },
+      },
       headers: {
-        feature: "Caratteristica",
+        feature: "Parametro di confronto",
         traditional: "Capsule tradizionali (es. PillCam™)",
         argo: "Progetto ARGO-GIM",
       },
       rows: [
         {
+          id: "prep",
+          category: "comfort",
           feature: "Preparazione intestinale",
-          traditional: "Obbligatoria e pesante (lassativi intensivi e digiuno stretto per liberare il campo visivo).",
-          argo: "Non invasiva: i biosensori e gli algoritmi sono progettati per rilevare anomalie anche nel contenuto fisiologico.",
+          traditional: "Obbligatoria e fortemente invasiva: richiede l'assunzione di litri di lassativi osmotici e digiuno rigoroso per pulire il campo ottico.",
+          traditionalBadge: "Lassativi intensivi obbligatori",
+          argo: "Non invasiva: i biosensori elettrochimici e gli algoritmi di filtraggio operano anche in presenza di contenuto fisiologico naturale.",
+          argoBadge: "Zero preparazione traumatica",
+          deepDive: "La preparazione intestinale è la prima causa (oltre il 45% dei casi) di rifiuto degli screening colorettali. Superare questo limite permette di raggiungere chi oggi evita l'esame per timore dei lassativi.",
           highlight: true,
         },
         {
+          id: "data",
+          category: "sensors",
           feature: "Tipologia di dati raccolti",
-          traditional: "Solo video ottico (fotografie della superficie interna).",
-          argo: "Multimodale: video ottico + biosensori biochimici (pH, stress ossidativo ROS, emoglobina e temperatura).",
+          traditional: "Esclusivamente video ottico: fotografie superficiali della mucosa che rilevano solo lesioni già visibili e macroscopiche.",
+          traditionalBadge: "Solo fotografia superficiale",
+          argo: "Multimodale: dual-end camera ad alta risoluzione + array di biosensori chimico-fisici (pH luminale, stress ossidativo ROS, emoglobina e temperatura).",
+          argoBadge: "Multimodale: Video + 4 Biosensori",
+          deepDive: "La progressione verso la lesione precancerosa o la ricaduta infiammatoria si manifesta a livello biochimico prima che la parete epiteliale mostri polipi o ulcerazioni evidenti.",
           highlight: true,
         },
         {
-          feature: "Gestione dei fotogrammi",
-          traditional: "Fino a 50.000 frame registrati indiscriminatamente; ore di revisione manuale per il medico.",
-          argo: "Edge-AI integrata: selezione a bordo dei frame salienti e scarto delle ripetizioni per una revisione rapida.",
+          id: "ai",
+          category: "ai",
+          feature: "Elaborazione e selezione fotogrammi",
+          traditional: "Registrazione passiva indifferenziata di oltre 50.000 frame; richiede ore di revisione manuale fotogramma per fotogramma da parte dello specialista.",
+          traditionalBadge: "Fino a 50.000 frame grezzi",
+          argo: "Edge-AI integrata a bordo: selezione locale istantanea dei frame con alterazioni anomale e scarto delle ripetizioni identiche.",
+          argoBadge: "Edge-AI a bordo & referto rapido",
+          deepDive: "L'inferenza locale riduce fino all'80% i pacchetti radio trasmessi, estendendo la durata della batteria e offrendo al medico un referto pre-strutturato focalizzato sui soli eventi salienti.",
           highlight: true,
         },
         {
-          feature: "Ambiente di utilizzo",
-          traditional: "Procedura specialistica ospedaliera o ambulatoriale.",
-          argo: "Pensato per il monitoraggio domiciliare continuo (Lite) e supporto diagnostico ospedaliero avanzato (Dx).",
+          id: "setting",
+          category: "comfort",
+          feature: "Ambiente e modalità di utilizzo",
+          traditional: "Procedura specialistica ospedaliera o ambulatoriale, programmata con mesi di anticipo e con monitoraggio dedicato.",
+          traditionalBadge: "Procedura ospedaliera programmata",
+          argo: "Progettato per la routine domiciliare (Lite per prevenzione periodica) e per supporto diagnostico specialistico avanzato (Dx).",
+          argoBadge: "Domiciliare (Lite) / Ospedaliero (Dx)",
+          deepDive: "Eseguire il controllo a casa, durante la giornata normale e senza alterare i ritmi lavorativi o personali, trasforma l'esame da evento traumatico a check-up periodico.",
+          highlight: false,
         },
         {
-          feature: "Stato infiammatorio precoce",
-          traditional: "Invisibile fino a quando non compaiono lesioni o ulcere visibili ad occhio nudo.",
-          argo: "Rilevabile precocemente tramite i biomarcatori di micro-sanguinamento e stress ossidativo.",
+          id: "inflam",
+          category: "sensors",
+          feature: "Rilevamento infiammatorio e lesioni precoci",
+          traditional: "Cieco agli stati infiammatori sub-visivi; rileva la patologia solo quando l'epitelio è già macroscopicamente ulcerato.",
+          traditionalBadge: "Solo lesioni visibili ad occhio nudo",
+          argo: "Sensibilità molecolare precoce: rileva cali di pH anomali, accumulo di radicali liberi e micro-sanguinamento occulto.",
+          argoBadge: "Biomarcatori precoci sub-visivi",
+          deepDive: "La correlazione tra gradienti chimici (Gradient Overlay) e posizione anatomica consente di allertare il medico tempestivamente, aprendo la strada a interventi preventivi mininvasivi.",
           highlight: true,
         },
       ],
@@ -583,6 +694,46 @@ export const translations: Record<Lang, Translations> = {
       headingBold: "Our goal is to make it possible at home, with no queues and no dread.",
       lead: "Today individuals must choose between tests with limited insight and invasive hospital procedures. The ARGO-GIM concept is engineered to overcome this compromise, paving the way for accessible, early-stage prevention.",
     },
+    acronym: {
+      eyebrow: "Name Architecture",
+      title: "What the ARGO-GIM Acronym Stands For",
+      fullName: "Autonomous Real-time Gradient Overlay — Gastro Intestinal Monitor",
+      lead: "Every element of the acronym reflects a deliberate scientific and engineering design aimed at overcoming the traditional barriers of capsule and hospital endoscopy.",
+      items: [
+        {
+          letter: "A",
+          word: "Autonomous",
+          meaning: "Natural motility & local decision-making",
+          tag: "Physiological motility & Edge-AI",
+          desc: "The capsule advances naturally through the digestive tract driven by peristalsis, with no invasive robotic propulsion or external maneuvers.",
+          deepDive: "On-board Edge-AI makes autonomous computational decisions locally: it evaluates optical and biochemical signals instant by instant, discarding redundancy and optimizing battery life.",
+        },
+        {
+          letter: "R",
+          word: "Real-time",
+          meaning: "Continuous telemetry with no latency",
+          tag: "Low-Power RF streaming",
+          desc: "Instantaneous sampling and continuous wireless streaming of physiological packets to the lightweight wearable receiver vest.",
+          deepDive: "Eliminates hospital post-exam download delays and offline storage constraints: telemetry packets and abnormal events are captured and correlated dynamically during daily life.",
+        },
+        {
+          letter: "G / O",
+          word: "Gradient Overlay",
+          meaning: "Multidimensional biochemical mapping",
+          tag: "Beyond surface photography",
+          desc: "Dynamic correlation and overlay of continuous physicochemical gradients (pH/acidity, oxidative stress ROS, trace haemoglobin, temperature) onto visual imaging.",
+          deepDive: "Conventional capsules capture surface photographs blind to biochemical status. ARGO-GIM creates a true multi-layered 'overlay' mapping continuous biochemical gradients against anatomical location, spotting sub-visual inflammation and cellular shifts before macroscopic lesions appear.",
+        },
+        {
+          letter: "GIM",
+          word: "Gastro Intestinal Monitor",
+          meaning: "Longitudinal home-based monitoring",
+          tag: "Accessible preventive screening",
+          desc: "The clinical mission: transforming colorectal cancer screening and IBD management from a feared, sporadic ordeal into an accessible, periodic home routine.",
+          deepDive: "An integrated ecosystem (capsule, sensor vest, mobile app, and structured physician report) conceived to break down the adherence barrier that leaves over 64% of eligible individuals unscreened.",
+        },
+      ],
+    },
     explorer: {
       eyebrow: "Concept Architecture",
       title: "Not just seeing. Understanding.",
@@ -626,42 +777,81 @@ export const translations: Record<Lang, Translations> = {
       ],
     },
     comparison: {
-      eyebrow: "Why ARGO-GIM",
-      title: "How it advances beyond conventional capsule endoscopy.",
-      lead: "Traditional endoscopic capsules (such as PillCam™) represent an important milestone in gastroenterology, but carry substantial limitations. Here is how ARGO-GIM is designed to transform the field.",
+      eyebrow: "Technology Comparison",
+      title: "How it advances beyond PillCam™ and conventional endoscopy capsules.",
+      lead: "Commercial endoscopic capsules (such as PillCam™) pioneered wireless gastrointestinal imaging, but suffer from rigid procedural and sensory constraints. Here is how the ARGO-GIM concept is engineered to leap forward.",
+      badgePillcam: "Conventional capsules (e.g. PillCam™)",
+      badgeArgo: "ARGO-GIM Concept",
+      viewCardsLabel: "Interactive Duel Cards",
+      viewTableLabel: "Technical Matrix",
+      filterAll: "All Dimensions",
+      filterComfort: "Patient Experience",
+      filterSensors: "Sensors & Diagnostics",
+      filterAi: "Artificial Intelligence",
+      stats: {
+        invasiveness: { label: "Preparation burden", trad: "Intensive laxatives & fasting", argo: "Zero laxatives or preparation" },
+        modalities: { label: "Detection channels", trad: "1 (Optical video only)", argo: "5 (Video + pH + ROS + Hb + °C)" },
+        frameAnalysis: { label: "Frame processing", trad: "Up to 50,000 raw frames", argo: "On-board Edge-AI filtering" },
+      },
       headers: {
-        feature: "Feature",
+        feature: "Comparison Dimension",
         traditional: "Conventional capsules (e.g. PillCam™)",
         argo: "ARGO-GIM Project",
       },
       rows: [
         {
+          id: "prep",
+          category: "comfort",
           feature: "Bowel Preparation",
-          traditional: "Mandatory and demanding (intensive laxative regimes and prolonged fasting to clear optics).",
-          argo: "Non-invasive: biosensors and algorithms are engineered to extract telemetry even within physiological contents.",
+          traditional: "Mandatory and demanding: requires drinking large volumes of osmotic laxatives and strict fasting to clear the optical field.",
+          traditionalBadge: "Intensive laxatives required",
+          argo: "Non-invasive: electrochemical biosensors and filtering algorithms operate even within natural physiological contents.",
+          argoBadge: "Zero traumatic preparation",
+          deepDive: "Bowel prep is the single leading deterrent (responsible for >45% of screening refusals). Eliminating it removes the primary barrier stopping at-risk patients from getting tested.",
           highlight: true,
         },
         {
-          feature: "Captured Data Types",
-          traditional: "Optical video only (surface imagery).",
-          argo: "Multimodal: high-res video + biochemical biosensors (pH, oxidative stress ROS, haemoglobin, and temperature).",
+          id: "data",
+          category: "sensors",
+          feature: "Captured Data Modalities",
+          traditional: "Optical video only: surface mucosal photography that detects lesions only when already macroscopically visible to the naked eye.",
+          traditionalBadge: "Surface imagery only",
+          argo: "Multimodal: high-resolution dual-end optics + electrochemical biosensor array (luminal pH, oxidative stress ROS, trace haemoglobin, temperature).",
+          argoBadge: "Multimodal: Video + 4 Biosensors",
+          deepDive: "Malignant transformation and mucosal inflammation start biochemically months before visible anatomical protrusions or ulcers appear. ARGO-GIM spots these sub-visual shifts.",
           highlight: true,
         },
         {
-          feature: "Frame Management",
-          traditional: "Up to 50,000 raw frames recorded indiscriminately; hours of manual physician review.",
-          argo: "On-board Edge-AI: smart local filtering of key frames, discarding repetitions to speed up diagnosis.",
+          id: "ai",
+          category: "ai",
+          feature: "Frame Processing & Curation",
+          traditional: "Undifferentiated recording of up to 50,000 raw frames; requires hours of manual frame-by-frame review by a gastroenterologist.",
+          traditionalBadge: "Up to 50,000 raw frames",
+          argo: "On-board Edge-AI: instantaneous local anomaly classification and automatic pruning of redundant frames.",
+          argoBadge: "On-board Edge-AI & rapid report",
+          deepDive: "Local inference trims transmitted RF packets by up to 80%, preserving battery reserves and enabling an AI-assisted structured report in minutes.",
           highlight: true,
         },
         {
-          feature: "Intended Setting",
-          traditional: "Hospital or specialized clinic procedure.",
-          argo: "Designed for home-based longitudinal check-ups (Lite) and advanced hospital diagnostics (Dx).",
+          id: "setting",
+          category: "comfort",
+          feature: "Setting & Routine of Use",
+          traditional: "Hospital or specialist outpatient procedure, scheduled weeks or months ahead with dedicated staff oversight.",
+          traditionalBadge: "Hospital specialist procedure",
+          argo: "Engineered for home routines (Lite for periodic check-ups) and advanced clinical hospital workflows (Dx).",
+          argoBadge: "Home routine (Lite) / Hospital (Dx)",
+          deepDive: "Allowing check-ups at home without altering daily life normalizes preventive screening, transforming it into an unburdensome, repeatable wellness routine.",
+          highlight: false,
         },
         {
-          feature: "Early Inflammation Detection",
-          traditional: "Undetectable until macroscopically visible ulcers or lesions appear.",
-          argo: "Early biochemical detection through mucosal micro-bleeding and oxidative stress markers.",
+          id: "inflam",
+          category: "sensors",
+          feature: "Early Inflammation & Lesion Detection",
+          traditional: "Blind to microscopic inflammation; detects disease only after the epithelium is macroscopically ulcerated or bleeding visibly.",
+          traditionalBadge: "Only visible established lesions",
+          argo: "Sub-visual molecular sensitivity: detects abnormal pH dips, free radical accumulation (ROS), and occult trace blood.",
+          argoBadge: "Early biochemical detection",
+          deepDive: "Correlating multi-parameter gradients (Gradient Overlay) with anatomical coordinates alerts physicians to early mucosal dysbiosis and dysplasia before malignant degeneration.",
           highlight: true,
         },
       ],

@@ -48,6 +48,11 @@ export const Hero: React.FC = () => {
           className="hero-logo"
           priority
         />
+        <div className="hero-acronym-tag">
+          <strong>ARGO-GIM</strong>
+          <span>·</span>
+          <span>Autonomous Real-time Gradient Overlay — Gastro Intestinal Monitor</span>
+        </div>
         <h1>
           {t.hero.titlePrefix}
           <span>{t.hero.titleHighlight}</span>

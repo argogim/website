@@ -278,6 +278,26 @@ section {
   height: auto;
 }
 
+.hero-acronym-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(61, 139, 255, 0.08);
+  border: 1px solid rgba(61, 139, 255, 0.25);
+  font-family: var(--mono);
+  font-size: clamp(0.72rem, 1.1vw, 0.84rem);
+  color: var(--fg-2);
+  letter-spacing: 0.03em;
+  margin-top: -4px;
+}
+
+.hero-acronym-tag strong {
+  color: var(--azzurro);
+  font-weight: 600;
+}
+
 .hero h1 {
   font-size: clamp(2.6rem, 6.6vw, 5.4rem);
   font-weight: 600;
@@ -1721,103 +1741,856 @@ footer ol {
   gap: 4px;
 }
 
-/* Comparison Section */
+/* ==========================================================================
+   Acronym Section (ARGO-GIM)
+   ========================================================================== */
+.acronym-sec {
+  background: var(--ink);
+  padding-block: clamp(70px, 8vw, 120px);
+  border-top: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.acronym-sec::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: 10%;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(61, 139, 255, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.acronym-fullname-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto 20px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(61, 139, 255, 0.08);
+  border: 1px solid rgba(61, 139, 255, 0.28);
+  font-family: var(--mono);
+  font-size: clamp(0.78rem, 1.2vw, 0.92rem);
+  font-weight: 500;
+  color: var(--azzurro);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.acronym-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.acronym-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+
+.acronym-card:hover {
+  border-color: rgba(61, 139, 255, 0.45);
+  transform: translateY(-3px);
+  background: rgba(17, 30, 75, 0.85);
+}
+
+.acronym-card.active {
+  border-color: var(--azzurro);
+  background: radial-gradient(circle at top left, rgba(61, 139, 255, 0.18), rgba(17, 30, 75, 0.95) 75%);
+  box-shadow: 0 12px 32px rgba(61, 139, 255, 0.15), 0 0 0 1px rgba(61, 139, 255, 0.4);
+}
+
+.acronym-card .card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.acronym-card .letter-badge {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(4, 8, 23, 0.6);
+  border: 1px solid rgba(61, 139, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.acronym-card.active .letter-badge {
+  background: var(--azzurro);
+  color: var(--ink);
+  border-color: var(--azzurro);
+  box-shadow: 0 4px 14px rgba(61, 139, 255, 0.4);
+}
+
+.acronym-card .icon-wrap {
+  color: var(--fg-2);
+  transition: color 0.2s ease;
+}
+
+.acronym-card.active .icon-wrap {
+  color: var(--azzurro);
+}
+
+.acronym-card .word-title {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.acronym-card .meaning-sub {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--azzurro);
+  font-family: var(--mono);
+  margin-bottom: 10px;
+}
+
+.acronym-card .short-desc {
+  font-size: 0.85rem;
+  color: var(--fg-2);
+  line-height: 1.45;
+  margin-bottom: 16px;
+}
+
+.acronym-card .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(34, 51, 107, 0.6);
+}
+
+.acronym-card .tag-pill {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: rgba(4, 8, 23, 0.5);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(34, 51, 107, 0.5);
+}
+
+.acronym-card.active .tag-pill {
+  color: var(--fg);
+  border-color: rgba(61, 139, 255, 0.3);
+}
+
+.acronym-card .view-more {
+  color: var(--muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.acronym-card:hover .view-more,
+.acronym-card.active .view-more {
+  color: var(--azzurro);
+  transform: translateX(3px);
+}
+
+/* Acronym Spotlight Drawer */
+.acronym-spotlight {
+  margin-top: 24px;
+  background: radial-gradient(ellipse at 15% 30%, rgba(61, 139, 255, 0.1), rgba(12, 24, 64, 0.9) 70%);
+  border: 1px solid rgba(61, 139, 255, 0.35);
+  border-radius: 18px;
+  padding: clamp(24px, 3.5vw, 36px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.spotlight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(61, 139, 255, 0.2);
+}
+
+.spotlight-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+.spotlight-pill .badge-highlight {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  background: var(--azzurro);
+  color: var(--ink);
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.spotlight-pill .sep {
+  color: var(--muted);
+}
+
+.spotlight-pill .meaning {
+  color: var(--fg-2);
+  font-size: 0.92rem;
+}
+
+.spotlight-header .tag-glow {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(61, 139, 255, 0.15);
+  border: 1px solid rgba(61, 139, 255, 0.4);
+  color: var(--azzurro);
+}
+
+.spotlight-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.spotlight-quote {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: #fff;
+  border-left: 3px solid var(--azzurro);
+  padding-left: 18px;
+}
+
+.spotlight-deepdive h4 {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--azzurro);
+  margin-bottom: 8px;
+}
+
+.spotlight-deepdive p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--fg-2);
+}
+
+@media (max-width: 900px) {
+  .acronym-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .spotlight-content {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 540px) {
+  .acronym-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Upgraded Comparison Section (ARGO-GIM vs PillCam™)
+   ========================================================================== */
 .comparison-sec {
   background: var(--navy);
   padding-block: clamp(80px, 10vw, 140px);
   border-top: 1px solid var(--line);
+  position: relative;
 }
 
-.table-responsive {
+/* Duel Highlight Stats Bar */
+.comp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: clamp(28px, 4vw, 40px);
+  margin-bottom: 32px;
+}
+
+.comp-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+}
+
+.comp-stat-head {
+  margin-bottom: 10px;
+}
+
+.comp-stat-head .stat-label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.stat-duel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.duel-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.duel-side .duel-device {
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  margin-bottom: 2px;
+}
+
+.duel-side .duel-val {
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+
+.duel-side.duel-trad .duel-device {
+  color: var(--muted);
+}
+
+.duel-side.duel-trad .duel-val {
+  color: var(--fg-2);
+}
+
+.duel-side.duel-argo .duel-device {
+  color: var(--azzurro);
+  font-weight: 600;
+}
+
+.duel-side.duel-argo .duel-val {
+  color: #fff;
+  font-weight: 600;
+}
+
+.duel-divider {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--line);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0 4px;
+}
+
+/* Controls Bar (Filter Chips + View Mode) */
+.comp-controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(34, 51, 107, 0.6);
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-btn {
+  background: rgba(4, 8, 23, 0.5);
+  border: 1px solid var(--line);
+  color: var(--fg-2);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-family: var(--body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip-btn:hover {
+  border-color: rgba(61, 139, 255, 0.4);
+  color: #fff;
+}
+
+.chip-btn.active {
+  background: rgba(61, 139, 255, 0.15);
+  border-color: var(--azzurro);
+  color: var(--azzurro);
+  font-weight: 600;
+}
+
+.view-toggle {
+  display: inline-flex;
+  background: rgba(4, 8, 23, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-family: var(--body);
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  color: var(--fg);
+}
+
+.toggle-btn.active {
+  background: var(--surface);
+  color: #fff;
+  border: 1px solid rgba(61, 139, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   View 1: Interactive Duel Container
+   ========================================================================== */
+.comp-duel-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.feature-nav-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--fg-2);
+  text-align: left;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.feature-tab:hover {
+  background: rgba(17, 30, 75, 0.85);
+  border-color: rgba(61, 139, 255, 0.4);
+  color: #fff;
+  transform: translateX(3px);
+}
+
+.feature-tab.selected {
+  background: radial-gradient(circle at 0% 50%, rgba(61, 139, 255, 0.2), var(--surface) 80%);
+  border-color: var(--azzurro);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(61, 139, 255, 0.15);
+}
+
+.feature-tab .feature-icon {
+  color: var(--azzurro);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.feature-tab .key-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+  margin-left: auto;
+}
+
+/* Duel Stage */
+.duel-stage {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(24px, 3.5vw, 36px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.duel-header-bar {
+  margin-bottom: 20px;
+}
+
+.feature-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pill-highlight {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 143, 107, 0.15);
+  border: 1px solid rgba(255, 143, 107, 0.4);
+  color: var(--coral);
+}
+
+.duel-cards-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.duel-card {
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.duel-card-trad {
+  background: rgba(8, 17, 45, 0.7);
+  border: 1px solid rgba(122, 136, 176, 0.25);
+}
+
+.duel-card-argo {
+  background: radial-gradient(ellipse at 80% 20%, rgba(61, 139, 255, 0.16), rgba(12, 24, 64, 0.9) 70%);
+  border: 1px solid rgba(61, 139, 255, 0.45);
+  box-shadow: 0 8px 24px rgba(61, 139, 255, 0.12);
+}
+
+.duel-card .card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.device-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.device-tag.trad-tag {
+  color: var(--muted);
+}
+
+.device-tag.argo-tag {
+  color: var(--azzurro);
+}
+
+.status-badge-crit {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(122, 136, 176, 0.15);
+  border: 1px solid rgba(122, 136, 176, 0.3);
+  color: var(--fg-2);
+}
+
+.status-badge-adv {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.duel-card .card-desc {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--fg);
+}
+
+.duel-card-trad .card-desc {
+  color: var(--fg-2);
+}
+
+.duel-card .card-bottom {
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(34, 51, 107, 0.4);
+}
+
+.duel-card .bottom-note {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+/* Deep Dive Box */
+.deepdive-box {
+  background: rgba(4, 8, 23, 0.6);
+  border: 1px solid rgba(61, 139, 255, 0.25);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.deepdive-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--azzurro);
+  margin-bottom: 6px;
+}
+
+.deepdive-text {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--fg-2);
+}
+
+/* ==========================================================================
+   View 2: High-End Matrix Table (Clean, Responsive, No broken flex on <td>)
+   ========================================================================== */
+.table-responsive-clean {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border-radius: 18px;
   border: 1px solid var(--line);
   background: var(--surface);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
-.comp-table {
+.comp-table-clean {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  min-width: 680px;
+  min-width: 720px;
 }
 
-.comp-table th {
-  padding: 20px 24px;
+.comp-table-clean th {
+  padding: 18px 22px;
   font-family: var(--display);
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   border-bottom: 2px solid var(--line);
-  background: rgba(4, 8, 23, 0.4);
+  background: rgba(4, 8, 23, 0.6);
 }
 
-.comp-table th.th-trad {
+.comp-table-clean th.th-param {
+  width: 25%;
+  color: #fff;
+}
+
+.comp-table-clean th.th-trad {
+  width: 37%;
   color: var(--fg-2);
 }
 
-.comp-table th.th-argo {
+.comp-table-clean th.th-argo {
+  width: 38%;
   color: var(--azzurro);
   background: rgba(61, 139, 255, 0.08);
 }
 
-.comp-table td {
-  padding: 18px 24px;
-  border-bottom: 1px solid rgba(34, 51, 107, 0.6);
-  font-size: 0.95rem;
-  vertical-align: top;
-  line-height: 1.5;
+.comp-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
 }
 
-.comp-table tr:last-child td {
-  border-bottom: none;
+.comp-row:hover {
+  background: rgba(61, 139, 255, 0.04);
 }
 
-.comp-table .row-highlight {
+.comp-row.row-featured {
   background: rgba(255, 255, 255, 0.015);
 }
 
-.comp-table .td-feature {
-  color: var(--fg);
-  font-family: var(--body);
-  font-weight: 600;
+.comp-row.row-expanded {
+  background: rgba(61, 139, 255, 0.06);
 }
 
-.comp-table .td-trad {
-  color: var(--muted);
+.comp-table-clean td {
+  padding: 18px 22px;
+  border-bottom: 1px solid rgba(34, 51, 107, 0.5);
+  vertical-align: top;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.cell-param .param-wrapper {
   display: flex;
-  gap: 10px;
   align-items: flex-start;
+  gap: 12px;
 }
 
-.comp-table .td-argo {
-  color: var(--fg);
-  background: rgba(61, 139, 255, 0.03);
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
-.icon-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  flex-shrink: 0;
+.param-icon {
+  color: var(--azzurro);
   margin-top: 2px;
+  flex-shrink: 0;
 }
 
-.icon-badge-check {
-  background: rgba(61, 139, 255, 0.2);
+.row-badge-star {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(255, 143, 107, 0.15);
+  color: var(--coral);
+}
+
+.expand-chevron {
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+.comp-row:hover .expand-chevron {
   color: var(--azzurro);
 }
 
-.icon-badge-x {
+.cell-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cell-trad p {
+  color: var(--fg-2);
+}
+
+.trad-badge-pill {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 4px;
   background: rgba(122, 136, 176, 0.15);
+  border: 1px solid rgba(122, 136, 176, 0.3);
   color: var(--muted);
+}
+
+.cell-argo {
+  background: rgba(61, 139, 255, 0.03);
+}
+
+.cell-argo p {
+  color: #fff;
+  font-weight: 500;
+}
+
+.argo-badge-pill {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+  font-weight: 600;
+}
+
+/* Expandable Drawer Row */
+.drawer-row td {
+  background: rgba(4, 8, 23, 0.55);
+  padding: 14px 24px;
+  border-bottom: 2px solid rgba(61, 139, 255, 0.3);
+}
+
+.drawer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-family: var(--mono);
+  color: var(--azzurro);
+}
+
+.drawer-content p {
+  font-size: 0.9rem;
+  color: var(--fg-2);
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .comp-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .comp-duel-container {
+    grid-template-columns: 1fr;
+  }
+  .duel-cards-split {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Milestones Section */
