@@ -86,8 +86,8 @@ export async function POST(req: Request) {
             </p>
             <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 32px 0;" />
             <p style="font-size: 13px; color: #718096; line-height: 1.5;">
-              © 2026 New-tale · ARGO-GIM<br />
-              <a href="https://www.argogim.com" style="color: #0066CC; text-decoration: none;">www.argogim.com</a> · <a href="mailto:info@argogim.com" style="color: #0066CC; text-decoration: none;">info@argogim.com</a>
+              © 2026 ARGO-GIM · info@argogim.com<br />
+              <a href="https://www.argogim.com" style="color: #0066CC; text-decoration: none;">www.argogim.com</a>
             </p>
           </div>
         `,

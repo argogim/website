@@ -1,9 +1,8 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
-import { Linkedin, ExternalLink } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 export const TeamSection: React.FC = () => {
   const { t } = useLanguage();
@@ -24,7 +23,12 @@ export const TeamSection: React.FC = () => {
               </div>
               <div>
                 <div className="person-header">
-                  <h3>{person.name}</h3>
+                  <div>
+                    <h3>{person.name}</h3>
+                    <span style={{ fontSize: "0.8rem", color: "var(--azzurro)", fontFamily: "var(--mono)", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                      {t.team.subtitleRole}
+                    </span>
+                  </div>
                   {person.linkedin && (
                     <a
                       href={person.linkedin}
@@ -38,31 +42,11 @@ export const TeamSection: React.FC = () => {
                     </a>
                   )}
                 </div>
-                <p>{person.role}</p>
+                <p style={{ marginTop: 6 }}>{person.role}</p>
               </div>
             </div>
           ))}
         </div>
-
-        <a
-          href={t.team.partnerUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="partner"
-          title="Biotecnomed - Polo di Innovazione Tecnologie della Salute"
-        >
-          <Image
-            src="/assets/biotecnomed.webp"
-            alt="Biotecnomed, Polo di Innovazione Tecnologie della Salute"
-            width={120}
-            height={52}
-            style={{ width: "auto", height: 52 }}
-          />
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-            {t.team.partnerTitle}
-            <ExternalLink size={13} style={{ opacity: 0.6 }} />
-          </span>
-        </a>
       </div>
     </section>
   );

@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 
 export const Waitlist: React.FC = () => {
   const { t } = useLanguage();
   const [email, setEmail] = useState("");
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -15,6 +17,12 @@ export const Waitlist: React.FC = () => {
     if (!email || !email.includes("@")) {
       setStatus("error");
       setErrorMsg(t.waitlist.errorInvalid);
+      return;
+    }
+
+    if (!privacyAccepted) {
+      setStatus("error");
+      setErrorMsg(t.waitlist.errorPrivacy);
       return;
     }
 
@@ -35,6 +43,7 @@ export const Waitlist: React.FC = () => {
 
       setStatus("success");
       setEmail("");
+      setPrivacyAccepted(false);
     } catch (err: any) {
       setStatus("error");
       setErrorMsg(err.message || t.waitlist.errorGeneric);
@@ -54,7 +63,7 @@ export const Waitlist: React.FC = () => {
           <div className="wl-act">
             {status === "success" ? (
               <div className="wl-success">
-                <CheckCircle2 size={24} color="#3D8BFF" />
+                <CheckCircle2 size={24} color="#3D8BFF" style={{ flexShrink: 0 }} />
                 <span>{t.waitlist.success}</span>
               </div>
             ) : (
@@ -91,6 +100,29 @@ export const Waitlist: React.FC = () => {
                     )}
                   </button>
                 </div>
+
+                <div className="privacy-checkbox-wrap">
+                  <label style={{ display: "flex", alignItems: "flex-start", gap: 10, cursor: "pointer", fontSize: "0.86rem", color: "var(--fg-2)", lineHeight: 1.4 }}>
+                    <input
+                      type="checkbox"
+                      checked={privacyAccepted}
+                      onChange={(e) => {
+                        setPrivacyAccepted(e.target.checked);
+                        if (status === "error") setStatus("idle");
+                      }}
+                      style={{ marginTop: 2, accentColor: "var(--azzurro-deep)", width: 16, height: 16, cursor: "pointer" }}
+                      required
+                    />
+                    <span>
+                      {t.waitlist.privacyConsent}
+                      <Link href="/privacy" target="_blank" style={{ color: "var(--azzurro)", textDecoration: "underline" }}>
+                        {t.waitlist.privacyLinkText}
+                      </Link>
+                      .
+                    </span>
+                  </label>
+                </div>
+
                 {status === "error" && (
                   <div className="wl-error">{errorMsg}</div>
                 )}

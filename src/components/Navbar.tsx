@@ -34,10 +34,12 @@ export const Navbar: React.FC = () => {
 
         <nav aria-label="Sezioni">
           <a href="#capsula">{t.nav.capsule}</a>
+          <a href="#innovazione">{t.nav.comparison}</a>
           <a href="#come-si-usa">{t.nav.routine}</a>
+          <a href="#percorso">{t.nav.milestones}</a>
           <a href="#versioni">{t.nav.versions}</a>
-          <a href="#faq">{t.nav.faq}</a>
           <a href="#progetto">{t.nav.project}</a>
+          <a href="#faq">{t.nav.faq}</a>
         </nav>
 
         <div className="nav-right">
