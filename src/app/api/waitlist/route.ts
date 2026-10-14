@@ -45,8 +45,8 @@ export async function POST(req: Request) {
       }
     }
 
-    // 2. Since argogim.com is verified on Resend, send from waitlist@argogim.com
-    const fromAddress = "ARGO-GIM <waitlist@argogim.com>";
+    // 2. Since argogim.com is verified on Resend, send from info@argogim.com
+    const fromAddress = "ARGO-GIM <info@argogim.com>";
 
     const sendPromises = [];
 
