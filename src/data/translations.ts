@@ -434,7 +434,7 @@ export const translations: Record<Lang, Translations> = {
       eyebrow: "Costruiamolo insieme",
       title: "Cerchiamo i partner giusti per arrivare al prototipo.",
       lead: "Se lavori in uno di questi ambiti, scrivici. Anche chi non investe può aiutarci.",
-      email: "niccolo.vono@unicz.it",
+      email: "info@argogim.com",
       copyBtn: "Copia indirizzo",
       copiedBtn: "Copiato",
       areas: [
@@ -720,7 +720,7 @@ export const translations: Record<Lang, Translations> = {
       eyebrow: "Let's build it together",
       title: "We are looking for the right partners to reach the prototype.",
       lead: "If you work in one of these fields, write to us. You can help even if you are not investing.",
-      email: "niccolo.vono@unicz.it",
+      email: "info@argogim.com",
       copyBtn: "Copy address",
       copiedBtn: "Copied",
       areas: [

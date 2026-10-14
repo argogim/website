@@ -14,7 +14,7 @@ export async function POST(req: Request) {
 
     const apiKey = process.env.RESEND_API_KEY;
     const audienceId = process.env.RESEND_AUDIENCE_ID;
-    const notifyEmail = process.env.WAITLIST_NOTIFY_EMAIL || "niccolo.vono@unicz.it";
+    const notifyEmail = process.env.WAITLIST_NOTIFY_EMAIL || "info@argogim.com";
 
     if (!apiKey) {
       console.warn("RESEND_API_KEY is not configured. Email logged:", email);
